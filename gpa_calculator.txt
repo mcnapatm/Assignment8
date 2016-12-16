@@ -57,7 +57,7 @@ START
 		classGPA classGPAArray[classTotalAmount] = new classGPA()
 		
 		housekeeping()
-		WHILE (classTotalAmount > 6) and (classTotalAmount < 1) THEN
+		WHILE (classTotalAmount > 6) OR (classTotalAmount < 1) THEN
 			IF classTotalAmount > 6 THEN
 				OUTPUT "That is too many classes. Please enter a number between 1 and 6."
 				INPUT classTotalAmount
