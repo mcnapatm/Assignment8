@@ -2,7 +2,7 @@
 //Assignment 8 GPA Calculator
 
 
-CLASS classGPA
+CLASS GPAClass
 
 	DECLARATIONS
 		private string className
@@ -54,7 +54,7 @@ START
 		num y = 0
 		string LETTERGRADE_ARRAY[SIZE] = "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "F"
 		num GRADEPOINT_ARRAY[SIZE] = 	 4.0, 3.70, 3.30, 3.00, 2.70, 2.30, 2.00, 1.70, 1.30, 1.00, 0.00
-		classGPA classGPAArray[classTotalAmount] = new classGPA()
+		GPAC GPACArray[classTotalAmount] = new GPAC()
 		
 		housekeeping()
 		WHILE (classTotalAmount > 6) OR (classTotalAmount < 1) THEN
@@ -77,21 +77,21 @@ START
 				OUTPUT "Please enter the name of the next class."
 			ENDIF
 			INPUT className;
-			classGPAArray[x].setClassName(className)
+			GPACArray[x].setClassName(className)
 			OUTPUT "Please enter the letter grade for the class."
 			INPUT letterGrade;
-			classGPAArray[x].setLetterGrade(letterGrade)
+			GPACArray[x].setLetterGrade(letterGrade)
 			OUTPUT "Please enter the number of credits for the class."
 			INPUT creditNum;
-			classGPAArray[x].setCreditNum(creditNum)
+			GPACArray[x].setCreditNum(creditNum)
 			x++
 		ENDWHILE
 		
 		x = 0
 		WHILE x <= classTotalAmount THEN
-			className = classGPAArray[x].getClassName()
-			letterGrade = classGPAArray[x].getLetterGrade()
-			creditNum = classGPAArray[x].getCreditNum()
+			className = GPACArray[x].getClassName()
+			letterGrade = GPACArray[x].getLetterGrade()
+			creditNum = GPACArray[x].getCreditNum()
 			OUTPUT className," Letter Grade: ",letterGrade," Credits: ", creditNum
 			WHILE letterGrade <> LETTERGRADE_ARRAY[y] THEN
 				y++;
