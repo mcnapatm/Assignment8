@@ -1,0 +1,126 @@
+//J. Walczak
+//Assignment 8 GPA Calculator
+
+
+CLASS classGPA
+
+	DECLARATIONS
+		private string className
+		private string letterGrade;
+		private num creditNum;
+		
+		public void setClassName(string cName)
+			className = cName
+		RETURN
+		
+		public void setLetterGrade(string grd)
+			letterGrade = grd
+		RETURN
+		
+		public void setCreditNum(num cred)
+			creditNum = cred
+		RETURN
+		
+		public string getClassName()
+		
+		RETURN className
+		
+		public string getLetterGrade()
+		
+		RETURN letterGrade;
+		
+		public num getCreditNum()
+		
+		RETURN creditNum;	
+		
+		
+	
+ENDCLASS
+
+//Beginning of the Main Program
+START
+
+	DECLARATIONS
+		num classTotalAmount;
+		string className
+		string letterGrade;
+		num creditNum;
+		num creditTotal = 0
+		num weightValue
+		num weightValueTotal = 0
+		num GPA
+		num SIZE = 10
+		num x = 0
+		num y = 0
+		string LETTERGRADE_ARRAY[SIZE] = "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "F"
+		num GRADEPOINT_ARRAY[SIZE] = 	 4.0, 3.70, 3.30, 3.00, 2.70, 2.30, 2.00, 1.70, 1.30, 1.00, 0.00
+		classGPA classGPAArray[classTotalAmount] = new classGPA()
+		
+		housekeeping()
+		WHILE (classTotalAmount > 6) and (classTotalAmount < 1) THEN
+			IF classTotalAmount > 6 THEN
+				OUTPUT "That is too many classes. Please enter a number between 1 and 6."
+				INPUT classTotalAmount
+			ELSEIF classTotalAmount < 1 THEN
+				OUTPUT "That is too few classes. Please enter a number between 1 and 6."
+				INPUT classTotalAmount
+			ENDIF
+		ENDWHILE
+		
+
+		WHILE x <= classTotalAmount
+			IF x == 0 THEN
+				OUTPUT "Please enter the name of the first class."
+			ELSEIF x == classTotalAmount
+				OUTPUT "Please enter the name of the last class."
+			ELSE
+				OUTPUT "Please enter the name of the next class."
+			ENDIF
+			INPUT className;
+			classGPAArray[x].setClassName(className)
+			OUTPUT "Please enter the letter grade for the class."
+			INPUT letterGrade;
+			classGPAArray[x].setLetterGrade(letterGrade)
+			OUTPUT "Please enter the number of credits for the class."
+			INPUT creditNum;
+			classGPAArray[x].setCreditNum(creditNum)
+			x++
+		ENDWHILE
+		
+		x = 0
+		WHILE x <= classTotalAmount THEN
+			className = classGPAArray[x].getClassName()
+			letterGrade = classGPAArray[x].getLetterGrade()
+			creditNum = classGPAArray[x].getCreditNum()
+			OUTPUT className," Letter Grade: ",letterGrade," Credits: ", creditNum
+			WHILE letterGrade <> LETTERGRADE_ARRAY[y] THEN
+				y++;
+			ENDWHILE
+			creditTotal = creditTotal + creditNum
+			weightValue = GRADEPOINT_ARRAY[y] * creditNum
+			weightValueTotal = weightValueTotal + weightValue 
+			y = 0 
+			x++
+		ENDWHILE
+		
+		(weightValueTotal / creditTotal) = GPA
+		
+		OUTPUT "Your total GPA for this semester is",GPA," ."
+		
+STOP
+
+housekeeping()
+	OUTPUT "This is a program that is used to determine the GPA for the current semester."
+	OUTPUT "Please enter the number of classes in the semseter. It should be a number between 1 and 6."
+	INPUT classTotalAmount;
+RETURN classTotalAmount
+
+
+
+
+
+
+
+
+
+
