@@ -9,26 +9,27 @@ public class GPAClass
         int classTotalAmount;
 		string className;
 		string letterGrade;
-		int creditint;
+        string creditStr;
+        int creditNum;
+        double creditDoub;
 		int creditTotal = 0;
-		int weightValue;
-		int weightValueTotal = 0;
-		int GPA;
-		int SIZE = 10;
+        double creditTotalDoub;
+		double weightValue;
+		double weightValueTotal = 0;
+		double GPA;
 		int x = 0;
 		int y = 0;
 		string[] LETTERGRADE_ARRAY = {"A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "F"};
         double[] GRADEPOINT_ARRAY = { 4.0, 3.70, 3.30, 3.00, 2.70, 2.30, 2.00, 1.70, 1.30, 1.00, 0.00 };
-        GPAC[] GPACArray; 
 
         classTotalAmount = housekeeping();
-        GPACArray = new GPAC[classTotalAmount];
-        while (x <= classTotalAmount) { 
+        GPAC[] GPACArray = new GPAC[classTotalAmount];
+        while (x < classTotalAmount) { 
             if(x == 0)
             {
                 Console.WriteLine("Please enter the name of the first class.");
             }
-            else if(x == classTotalAmount)
+            else if(x == (classTotalAmount - 1))
             {
                 Console.WriteLine("Please enter the name of the last class.");
             }
@@ -36,9 +37,43 @@ public class GPAClass
             {
                 Console.WriteLine("Please enter the name of the next class.");
             }
+            className = Console.ReadLine();
+            Console.WriteLine("Please enter the letter grade for this class.");
+            letterGrade = Console.ReadLine();
+            Console.WriteLine("Please enter the number of credits for this class.");
+            creditStr = Console.ReadLine();
+            creditNum = Convert.ToInt32(creditStr);
+            GPACArray[x] = new GPAC();
+            GPACArray[x].setClassName(className);
+            GPACArray[x].setLetterGrade(letterGrade);
+            GPACArray[x].setCreditNum(creditNum);
             ++x;
         
         }
+        x = 0;
+        while (x < classTotalAmount)
+        {
+            className = GPACArray[x].getClassName();
+			letterGrade = GPACArray[x].getLetterGrade();
+			creditNum = GPACArray[x].getCreditNum();
+            Console.WriteLine("Class Name: " + className + " Letter Grade: " + letterGrade + " Credits: " + creditNum);
+            while(letterGrade != LETTERGRADE_ARRAY[y]){
+                y++;
+            }
+
+            creditTotal = creditTotal + creditNum;
+            creditDoub = Convert.ToDouble(creditNum);
+			weightValue = creditDoub * GRADEPOINT_ARRAY[y];
+			weightValueTotal = weightValueTotal + weightValue;
+			y = 0;
+            x++;
+        
+        }
+        creditTotalDoub = Convert.ToDouble(creditTotal);
+        GPA = (weightValueTotal / creditTotalDoub);
+        Console.WriteLine("Your total GPA for this semester is "+ GPA);
+        Console.WriteLine("Press enter to quit.");
+        Console.ReadLine();
 
 
 
@@ -78,14 +113,17 @@ public class GPAClass
         public void setClassName(string cName)
         {
             className = cName;
+            return;
         }
         public void setLetterGrade(string grd)
         {
             letterGrade = grd;
+            return;
         }
         public void setCreditNum(int cred)
         {
             creditNum = cred;
+            return;
         }
         public string getClassName()
         {
